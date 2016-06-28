@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Manager } from './core/manager';
+import { Manager } from '../../src/core/manager';
 
 describe('Manager', () => {
   it('should register a value', () => {
@@ -31,8 +31,10 @@ describe('Manager', () => {
     let item1 = {};
     let item2 = {};
 
-    manager.register(item);
-    manager.register(item);
+    manager.register('Item1', item1);
+    manager.register('Item2', item2);
+
+    console.log(manager._store);
 
     assert.equal(manager.length, 2);
   });
