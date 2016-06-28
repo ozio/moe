@@ -1,0 +1,9 @@
+{
+  "extends": "eslint-config-rambler",
+  "rules": {
+    "key-spacing": 1,
+    "no-trailing-spaces": 0,
+    "for-in": 0,
+    "no-unused-vars": 0
+  }
+}

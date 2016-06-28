@@ -1,17 +1,17 @@
 {
   "name": "moe.js",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Moe is an extremely simple javascript visal novel engine, made (not yet, but soon) on top of combination of [Pixi.js](https://github.com/pixijs/pixi.js) and [howler.js](https://github.com/goldfire/howler.js/), and then wrapped with [Apache Cordova](https://cordova.apache.org/) and [Electron](https://github.com/electron/electron).",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel/register --recursive ./tests/unit/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ozio/moe.js.git"
+    "url": "git+https://github.com/ozio/moe.git"
   },
   "keywords": [
     "visual novel",
@@ -20,11 +20,16 @@
   "author": "Nikolay Solovyov <i@mr-ozio.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ozio/moe.js/issues"
+    "url": "https://github.com/ozio/moe/issues"
   },
-  "homepage": "https://github.com/ozio/moe.js#readme",
+  "homepage": "https://github.com/ozio/moe#readme",
   "dependencies": {
     "howler": "^2.0.0-rc1",
     "pixi.js": "^3.0.11"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel": "^6.5.2",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.9.0"
   }
 }
