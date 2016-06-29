@@ -55,6 +55,15 @@ export class Base {
   /**
    * Unsubscribe handler(-s) from event.
    *
+   * @example <caption>Unsubscribe handler from the event</caption>
+   * instance.off('event', handler);
+   *
+   * @example <caption>Unsubscribe all handlers from the event</caption>
+   * instance.off('event');
+   *
+   * @example <caption>Unsubscribe all</caption>
+   * instance.off();
+   *
    * @param {string} [event] - Event name
    * @param {function} [handler] - Handler
    * @returns {Base}

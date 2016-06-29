@@ -3,7 +3,6 @@ import { Base } from '../../src/core/base';
 
 let assert = chai.assert;
 let expect = chai.expect;
-let should = chai.should;
 
 describe('class Base', () => {
   it('shouldn\'t be a singleton', () => {

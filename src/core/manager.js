@@ -1,9 +1,15 @@
 import { Base } from './base';
 
+/**
+ * Class implements store manager.
+ *
+ * @extends Base
+ **/
+
 export class Manager extends Base {
 
   /**
-   * @classdesc Store manager
+   * Create a store
    **/
 
   constructor() {
@@ -15,7 +21,7 @@ export class Manager extends Base {
   /**
    * Register item
    *
-   * @param {string} name - Name of instance
+   * @param {string} name - Instance name
    * @param {*} instance - Something that you want to store
    * @returns {*} instance
    **/
@@ -31,7 +37,7 @@ export class Manager extends Base {
   /**
    * Check store to exist item you want
    *
-   * @param {string} name - Name of instance
+   * @param {string} name - Instance name
    * @returns {boolean}
    **/
 

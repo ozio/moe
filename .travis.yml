@@ -1,0 +1,10 @@
+sudo: false
+language: node_js
+node_js:
+  - "0.12"
+  - "4.4.x"
+  - "6.1.x"
+after_script:
+  - npm test
+git:
+  depth: 10
