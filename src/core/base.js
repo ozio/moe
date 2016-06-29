@@ -1,7 +1,13 @@
+/**
+ * The base class that bring functionality to all other classes, e.g. event emitting.
+ *
+ * @class Base
+ **/
+
 export class Base {
 
   /**
-   * @classdesc The base class that bring global functionality to all other classes. E.g. event emitting.
+   * Create a list
    **/
 
   constructor() {
@@ -29,7 +35,7 @@ export class Base {
   }
 
   /**
-   * This is `on`, but handler will subscribe for only one event firing.
+   * This is <code>on</code>, but handler will subscribe for only one event firing.
    *
    * @param {string} event - Event name
    * @param {function} handler - Handler

@@ -2,8 +2,6 @@ import { Base } from './base';
 
 /**
  * Class implements store manager.
- *
- * @extends Base
  **/
 
 export class Manager extends Base {
