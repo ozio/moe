@@ -1,4 +1,4 @@
-# 萌え.js (moe.js) — JavaScript Visual Novel Engine
+# 萌え.js (moe.js) — Visual Novel Engine
 
 [![Build Status](https://travis-ci.org/ozio/moe.svg?branch=master)](https://travis-ci.org/ozio/moe)
 
