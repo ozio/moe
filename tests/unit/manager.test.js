@@ -1,15 +1,15 @@
 import chai from 'chai';
-import should from 'should';
 import { Manager } from '../../src/core/manager';
 
 let assert = chai.assert;
+let expect = chai.expect;
 
 describe('class Manager', () => {
   it('shouldn\'t be a singleton', () => {
     let manager1 = new Manager();
     let manager2 = new Manager();
 
-    assert.equal(manager1 === manager2, false)
+    expect(manager1 === manager2).to.equal(false);
   });
 
   it('should register a value', () => {
@@ -18,7 +18,7 @@ describe('class Manager', () => {
 
     manager.register('Item', item);
 
-    assert.equal(manager._store['Item'], item);
+    expect(manager._store['Item']).to.equal(item);
   });
 
   it('should exist registered value', () => {
@@ -44,6 +44,6 @@ describe('class Manager', () => {
     manager.register('Item1', item1);
     manager.register('Item2', item2);
 
-    manager.should.have.property('length', 2);
+    expect(manager.length).to.equal(2);
   });
 });
