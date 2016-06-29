@@ -1,7 +1,20 @@
 export class Base {
+
+  /**
+   * @classdesc The base class that bring global functionality to all other classes. E.g. event emitting.
+   **/
+
   constructor() {
     this._subscribes = {};
   }
+
+  /**
+   * Subscribe a handler on event.
+   *
+   * @param {string} event - Event name
+   * @param {function} handler - Handler
+   * @returns {Base}
+   **/
 
   on(event, handler) {
     if (!event) throw new TypeError('Failed to execute `on`: 2 arguments required.');
@@ -14,6 +27,14 @@ export class Base {
 
     return this;
   }
+
+  /**
+   * This is `on`, but handler will subscribe for only one event firing.
+   *
+   * @param {string} event - Event name
+   * @param {function} handler - Handler
+   * @returns {Base}
+   **/
 
   once(event, handler) {
     if (!event) throw new TypeError('Failed to execute `once`: 2 arguments required.');
@@ -30,6 +51,14 @@ export class Base {
 
     return this.on(event, wrapped);
   }
+
+  /**
+   * Unsubscribe handler(-s) from event.
+   *
+   * @param {string} [event] - Event name
+   * @param {function} [handler] - Handler
+   * @returns {Base}
+   **/
 
   off(event, handler) {
     if (handler === undefined) {
@@ -51,6 +80,13 @@ export class Base {
 
     return this;
   }
+
+  /**
+   * Emit all subscribed handlers for event.
+   *
+   * @param {string} event - Event
+   * @returns {Base}
+   **/
 
   emit(event) {
     if (!event) throw new TypeError('Failed to execute `emit`: 1 argument required.');
@@ -74,6 +110,4 @@ export class Base {
 
     return this;
   }
-
-  parseEvents() {}
 }
