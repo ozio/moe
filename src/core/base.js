@@ -48,8 +48,7 @@ export class Base {
     if (!handler) throw new TypeError('Failed to execute `once 2 arguments required, but only 1 present.');
     if (typeof handler !== 'function') throw new TypeError('Failed to execute `once`: `handler` must be a function.');
 
-    let wrapped = () => {
-      let args = Array.prototype.slice.call(arguments, 1);
+    const wrapped = (...args) => {
       handler.call(this, args);
 
       this.off(event, wrapped);
@@ -103,15 +102,13 @@ export class Base {
    * @returns {Base}
    **/
 
-  emit(event) {
+  emit(event, ...args) {
     if (!event) throw new TypeError('Failed to execute `emit`: 1 argument required.');
     if (typeof event !== 'string') throw new TypeError('Failed to execute `emit`: `event` must be a string.');
 
-    let attributeName = 'on' + event[0].toUpperCase() + event.slice(1);
+    const attributeName = `on${event[0].toUpperCase()}${event.slice(1)}`;
 
     if (this._subscribes[event] || this[attributeName]) {
-      let args = Array.prototype.slice.call(arguments, 1);
-
       if (this[attributeName]) {
         this[attributeName].apply(this, args);
       }

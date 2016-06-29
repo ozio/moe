@@ -6,4 +6,3 @@
 
 import { Base } from './core/base';
 import { Manager } from './core/manager';
-
