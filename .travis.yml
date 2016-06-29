@@ -2,8 +2,8 @@ sudo: false
 language: node_js
 node_js:
   - "0.12"
-  - "4.4.x"
-  - "6.1.x"
+  - "4.4"
+  - "6.1"
 after_script:
   - npm test
 git:
