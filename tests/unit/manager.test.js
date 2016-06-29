@@ -1,28 +1,30 @@
-import assert from 'assert';
+import chai from 'chai';
 import { Manager } from '../../src/core/manager';
+
+let assert = chai.assert;
 
 describe('Manager', () => {
   it('should register a value', () => {
     let manager = new Manager();
     let item = { a: 1 };
+
     manager.register('Item', item);
+
     assert.equal(manager._store['Item'], item);
   });
 
   it('should exist registered value', () => {
     let manager = new Manager();
     let item = { a: 1 };
+
     manager.register('Item', item);
+
     assert.equal(manager.exist('Item'), true);
   });
 
-  it('shouldn\'t exist registered value', () => {
+  it('shouldn\'t exist unregistered value', () => {
     let manager = new Manager();
-    assert.equal(manager.exist('Item'), false);
-  });
 
-  it('shouldn\'t exist registered value', () => {
-    let manager = new Manager();
     assert.equal(manager.exist('Item'), false);
   });
 
@@ -33,8 +35,6 @@ describe('Manager', () => {
 
     manager.register('Item1', item1);
     manager.register('Item2', item2);
-
-    console.log(manager._store);
 
     assert.equal(manager.length, 2);
   });
