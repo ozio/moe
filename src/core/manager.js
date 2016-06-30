@@ -2,13 +2,13 @@ import { Base } from './base';
 
 /**
  * Class implements store manager.
- **/
+ */
 
 export class Manager extends Base {
 
   /**
    * Create a store
-   **/
+   */
 
   constructor() {
     super();
@@ -21,13 +21,31 @@ export class Manager extends Base {
    *
    * @param {string} name - Instance name
    * @param {*} instance - Something that you want to store
+   * @fires Manager#beforeRegister
+   * @fires Manager#register
    * @returns {*} instance
-   **/
+   */
 
   register(name, instance) {
+    /**
+     * Before register event.
+     *
+     * @event Manager#beforeRegister
+     */
+
+    this.emit('beforeRegister');
+
     if (this.exist(name)) return this.get(name);
 
     this._store[name] = instance;
+
+    /**
+     * Register event.
+     *
+     * @event Manager#register
+     */
+
+    this.emit('register');
 
     return instance;
   }
@@ -37,7 +55,7 @@ export class Manager extends Base {
    *
    * @param {string} name - Instance name
    * @returns {boolean}
-   **/
+   */
 
   exist(name) {
     return typeof this._store[name] !== 'undefined';
@@ -48,7 +66,7 @@ export class Manager extends Base {
    *
    * @param {string} name - Instance name
    * @returns {*} instance
-   **/
+   */
 
   get(name) {
     return this._store[name];
@@ -58,7 +76,7 @@ export class Manager extends Base {
    * Store length
    *
    * @type {number}
-   **/
+   */
 
   get length() {
     return Object.keys(this._store).length;

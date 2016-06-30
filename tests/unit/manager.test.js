@@ -46,4 +46,24 @@ describe('class Manager', () => {
 
     expect(manager.length).to.equal(2);
   });
+
+  it('should emit an register event', () => {
+    const manager = new Manager();
+    let beforeRegisterFlag = false;
+    let registerFlag = false;
+
+    manager.on('beforeRegister', () => {
+      beforeRegisterFlag = true;
+    });
+
+    manager.on('register', () => {
+      registerFlag = true;
+    });
+
+    manager.emit('beforeRegister');
+    manager.emit('register');
+
+    expect(beforeRegisterFlag).to.equal(true);
+    expect(registerFlag).to.equal(true);
+  });
 });

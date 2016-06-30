@@ -1,14 +1,12 @@
 /**
  * The base class that bring functionality to all other classes, e.g. event emitting.
- *
- * @class Base
- **/
+ */
 
 export class Base {
 
   /**
    * Create a list
-   **/
+   */
 
   constructor() {
     this._subscribes = {};
@@ -20,7 +18,7 @@ export class Base {
    * @param {string} event - Event name
    * @param {function} handler - Handler
    * @returns {Base}
-   **/
+   */
 
   on(event, handler) {
     if (!event) throw new TypeError('Failed to execute `on`: 2 arguments required.');
@@ -40,7 +38,7 @@ export class Base {
    * @param {string} event - Event name
    * @param {function} handler - Handler
    * @returns {Base}
-   **/
+   */
 
   once(event, handler) {
     if (!event) throw new TypeError('Failed to execute `once`: 2 arguments required.');
@@ -72,7 +70,7 @@ export class Base {
    * @param {string} [event] - Event name
    * @param {function} [handler] - Handler
    * @returns {Base}
-   **/
+   */
 
   off(event, handler) {
     if (handler === undefined) {
@@ -100,7 +98,7 @@ export class Base {
    *
    * @param {string} event - Event
    * @returns {Base}
-   **/
+   */
 
   emit(event, ...args) {
     if (!event) throw new TypeError('Failed to execute `emit`: 1 argument required.');
