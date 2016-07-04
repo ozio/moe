@@ -2,11 +2,16 @@ import { PIXI } from 'pixi.js';
 import { Base } from './base';
 import { Stage } from './stage';
 
+import { sceneEngineLogo } from './scenes/engine-logo';
+
 const defaults = {
   width: 800,
   height: 600,
   container: document.body,
   assets: 'http://localhost:54321/_assets/',
+  openingSequence: [
+    sceneEngineLogo
+  ],
   script: {}
 };
 
@@ -20,9 +25,11 @@ export class Game extends Base {
    * Merge defaults with parameters.
    *
    * @param {object} params - Game parameters.
-   * @param {number} [params.width=800] - Width of the screen
-   * @param {number} [params.height=600] - Height of the screen
-   * @param {string|HTMLElement} [params.container=document.body] - Game container
+   * @param {number} [params.width=800] - Width of the screen.
+   * @param {number} [params.height=600] - Height of the screen.
+   * @param {string|HTMLElement} [params.container=document.body] - Game container.
+   * @param {string} [params.assets='http://localhost:54321/_assets/'] - Game assets folder.
+   * @param {Scene[]} [params.openingSequence=[sceneEngineLogo]] - Sequence of opening scenes.
    */
 
   constructor(params) {

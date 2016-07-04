@@ -6,3 +6,4 @@
 
 import { Base } from './core/base';
 import { Manager } from './core/manager';
+import { Scene } from './core/scene';

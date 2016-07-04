@@ -19,6 +19,6 @@
     "encoding": "utf8",
     "private": true,
     "recurse": true,
-    "template": "./node_modules/c2cs-jsdoc"
+    "template": "./node_modules/oz-jsdoc"
   }
 }
