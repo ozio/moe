@@ -43,8 +43,8 @@ export class Game extends Base {
    */
 
   initializeStage() {
-    this.screen = new Stage(this.params);
-    this.screen.initialize();
+    this.stage = new Stage(this.params);
+    this.stage.initialize();
   }
 
   /**
