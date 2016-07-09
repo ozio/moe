@@ -51,6 +51,7 @@
     "gulp-uglifyjs": "^0.6.2",
     "gulp-umd": "^0.2.0",
     "jsdoc": "^3.4.0",
+    "jsdoc-strip-async-await": "^0.1.0",
     "mocha": "^2.5.3",
     "oz-jsdoc": "github:ozio/oz-jsdoc",
     "vinyl-buffer": "^1.0.0",
