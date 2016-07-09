@@ -5,7 +5,8 @@ node_js:
   - "4"
   - "6"
 after_script:
-  - ./node_modules/gulp/bin/gulp.js build
+  - npm run build
+  - npm run docs
   - npm test
 git:
   depth: 10
