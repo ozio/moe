@@ -1,0 +1,12 @@
+/**
+ * @license
+ *
+ * 萌え.js — JavaScript Visual Novel Engine (v<%= pkg.version %>)
+ * Compiled <%= date %>
+ *
+ * moe.js is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * <% licenseText.split('\n').forEach(function (line) { %><%= line %>
+ * <% }); %>
+ */
