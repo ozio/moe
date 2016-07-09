@@ -1,13 +1,13 @@
-const gulp = require('gulp');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
+const transform = require('vinyl-transform');
 const browserify = require('browserify');
 const babelify = require('babelify');
+const exorcist = require('exorcist');
+const gulp = require('gulp');
 const uglify = require('gulp-uglifyjs');
 // const umd = require('gulp-umd');
 const seq = require('gulp-sequence');
-const exorcist = require('exorcist');
-const transform = require('vinyl-transform');
 const clean = require('gulp-clean');
 
 gulp.task('browserify', () => {
@@ -19,16 +19,20 @@ gulp.task('browserify', () => {
   .bundle()
   .pipe(source('moe.js'))
   .pipe(buffer())
-  .pipe(transform(() => exorcist('dist/moe.js.map')))
+
+  /* Three lines at the bottom looks really weird, but that is not a bug. */
+
+  .pipe(gulp.dest('dist'))
+  .pipe(transform(() => exorcist('./dist/moe.js.map')))
   .pipe(gulp.dest('dist'));
 
   return sequence;
 });
 
 gulp.task('uglify', () => {
-  const sequence = gulp.src('./dist/moe.js')
+  const sequence = gulp.src('dist/moe.js')
   .pipe(uglify('moe.min.js', {
-    inSourceMap: './dist/moe.js.map',
+    inSourceMap: 'dist/moe.js.map',
     outSourceMap: 'moe.min.js.map'
   }))
   .pipe(gulp.dest('dist'));
@@ -37,7 +41,7 @@ gulp.task('uglify', () => {
 });
 
 gulp.task('clean', () => {
-  const sequence = gulp.src('./dist/**/*', { read: false })
+  const sequence = gulp.src('dist/**/*', { read: false })
   .pipe(clean());
 
   return sequence;
