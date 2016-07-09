@@ -2,11 +2,11 @@ import { PIXI } from 'pixi.js';
 import { Base } from './base';
 import { Stage } from './stage';
 
-import { sceneEngineLogo } from './scenes/engine-logo';
+import { sceneEngineLogo } from '../scenes/engine-logo/engine-logo';
 
 const defaults = {
-  width: 800,
-  height: 600,
+  width: 1024,
+  height: 768,
   container: document.body,
   assets: 'http://localhost:54321/_assets/',
   openingSequence: [

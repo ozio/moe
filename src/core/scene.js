@@ -4,8 +4,8 @@ import { Image } from './image';
 
 const defaults = {
   assets: [],
-  width: 800,
-  height: 600,
+  width: 1024,
+  height: 768,
   backgroundColor: '#000000'
 };
 
@@ -46,7 +46,7 @@ export class Scene extends Base {
   * @returns {Object} - List of parsed assets.
   */
 
-  parseAssets(assets) {
+  parseAssets(assets = []) {
     const parsedAssets = {};
 
     for (const asset of assets) {
@@ -70,16 +70,7 @@ export class Scene extends Base {
 
   render() {
     const route = {};
-    const sequence = this.sequence(this.stage, route);
-
-    for (const step of sequence()) {
-      // console.log(step);
-    }
+    this.sequence(this.stage, route);
   }
 
-  static pressAnyKeyOrWait(duration = 2000) {
-    const timeout = setTimeout(() => {
-
-    }, duration);
-  }
 }

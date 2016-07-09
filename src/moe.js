@@ -4,6 +4,6 @@
  * © Nikolay Solovyov, 2016
  */
 
-import { Base } from './core/base';
-import { Manager } from './core/manager';
-import { Scene } from './core/scene';
+import { Game } from './core/game';
+
+export default Game;

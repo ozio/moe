@@ -1,9 +1,9 @@
-import { Scene } from '../scene';
+import { Scene } from '../../core/scene';
 
 export const screenEngineLogo = new Scene({
   assets: [
-    { name: 'logo', kind: 'image', path: 'assets/engine-logo.png' },
-    { name: 'sample', kind: 'audio', path: 'assets/engine-audio.wav' }
+    { name: 'logo', kind: 'image', path: './assets/engine-logo.png' },
+    { name: 'sample', kind: 'audio', path: './assets/engine-audio.wav' }
   ],
 
   async sequence(stage, route = {}) {
@@ -11,8 +11,8 @@ export const screenEngineLogo = new Scene({
     const sample = this.sounds.sample;
 
     logo.set({
-      width: 100,
-      height: 100,
+      width: 240,
+      height: 240,
       x: 'center',
       y: 'center',
       opacity: 0
@@ -27,7 +27,7 @@ export const screenEngineLogo = new Scene({
       duration: 200
     });
 
-    await Scene.pressAnyKeyOrWait(3000);
+    await stage.pressAnyKeyOrWait(3000);
 
     await logo.fadeOut({
       easing: 'ease',

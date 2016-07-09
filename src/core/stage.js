@@ -1,4 +1,5 @@
 import { Base } from './base';
+import { keyboard } from './keyboard';
 
 export class Stage extends Base {
   constructor(params) {
@@ -20,5 +21,17 @@ export class Stage extends Base {
 
     this.stage = stage;
     this.renderer = renderer;
+  }
+
+  pressAnyKeyOrWait(duration = 2000) {
+    const fn = (resolve, reject) => {
+      keyboard.once('anyKey', resolve);
+      const timeout = setTimeout(() => {
+        keyboard.off('anyKey', resolve);
+        resolve();
+      }, duration);
+    };
+
+    return new Promise(fn);
   }
 }
