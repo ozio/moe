@@ -11,15 +11,7 @@ describe('class Base', () => {
 
     assert.equal(base1 === base2, false);
   });
-
-  it('should register an event', () => {
-    const base = new Base();
-    const event = 'event';
-    base.on(event, () => {});
-
-    expect(base._subscribes[event].length).to.equal(1);
-  });
-
+  
   it('should emit registered event', () => {
     const base = new Base();
     let variable = false;
