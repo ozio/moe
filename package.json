@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register --recursive ./tests/unit/",
-    "build": "./node_modules/gulp/bin/gulp.js build",
+    "build": "node ./gulp/welcome.js && ./node_modules/gulp/bin/gulp.js build",
     "docs": "./node_modules/.bin/jsdoc --configure .jsdoc.json --verbose ./"
   },
   "repository": {
@@ -49,6 +49,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-debug": "^2.1.2",
     "gulp-header": "^1.8.7",
+    "gulp-notify": "^2.2.0",
     "gulp-sequence": "^0.4.5",
     "gulp-uglifyjs": "^0.6.2",
     "gulp-umd": "^0.2.0",

@@ -5,7 +5,7 @@
       "README.md"
     ],
     "includePattern": ".js$",
-    "excludePattern": "(node_modules/|docs|dist/)"
+    "excludePattern": "(node_modules/|docs|dist|gulp|tests/)"
   },
   "plugins": [
     "node_modules/jsdoc-strip-async-await",
