@@ -1,6 +1,7 @@
 /node_modules/
 /docs/
 /dist/*
+/.idea/
 
 npm-debug.log
 .DS_Store

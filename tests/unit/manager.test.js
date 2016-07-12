@@ -12,15 +12,6 @@ describe('class Manager', () => {
     expect(manager1 === manager2).to.equal(false);
   });
 
-  it('should register a value', () => {
-    const manager = new Manager();
-    const item = { a: 1 };
-
-    manager.register('Item', item);
-
-    expect(manager._store['Item']).to.equal(item);
-  });
-
   it('should exist registered value', () => {
     const manager = new Manager();
     const item = { a: 1 };
