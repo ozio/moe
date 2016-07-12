@@ -13,7 +13,7 @@ export class Manager extends Base {
   constructor() {
     super();
 
-    this._store = {};
+    this.store = {};
   }
 
   /**
@@ -37,7 +37,7 @@ export class Manager extends Base {
 
     if (this.exist(name)) return this.get(name);
 
-    this._store[name] = instance;
+    this.store[name] = instance;
 
     /**
      * Register event.
@@ -58,7 +58,7 @@ export class Manager extends Base {
    */
 
   exist(name) {
-    return typeof this._store[name] !== 'undefined';
+    return typeof this.store[name] !== 'undefined';
   }
 
   /**
@@ -69,7 +69,7 @@ export class Manager extends Base {
    */
 
   get(name) {
-    return this._store[name];
+    return this.store[name];
   }
 
   /**
@@ -79,6 +79,6 @@ export class Manager extends Base {
    */
 
   get length() {
-    return Object.keys(this._store).length;
+    return Object.keys(this.store).length;
   }
 }

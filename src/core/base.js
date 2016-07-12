@@ -9,7 +9,7 @@ export class Base {
    */
 
   constructor() {
-    this._subscribes = {};
+    this.subscribers = {};
   }
 
   /**
@@ -17,17 +17,25 @@ export class Base {
    *
    * @param {string} event - Event name
    * @param {function} handler - Handler
-   * @returns {Base}
+   * @returns {Base} - Current instance
    */
 
   on(event, handler) {
-    if (!event) throw new TypeError('Failed to execute `on`: 2 arguments required.');
-    if (typeof event !== 'string') throw new TypeError('Failed to execute `on`: `event` must be a string.');
-    if (!handler) throw new TypeError('Failed to execute `on`: 2 arguments required, but only 1 present.');
-    if (typeof handler !== 'function') throw new TypeError('Failed to execute `on`: `handler` must be a function.');
+    if (!event) {
+      throw new TypeError('Failed to execute `on`: 2 arguments required.');
+    }
+    if (typeof event !== 'string') {
+      throw new TypeError('Failed to execute `on`: `event` must be a string.');
+    }
+    if (!handler) {
+      throw new TypeError('Failed to execute `on`: 2 arguments required, but only 1 present.');
+    }
+    if (typeof handler !== 'function') {
+      throw new TypeError('Failed to execute `on`: `handler` must be a function.');
+    }
 
-    if (!this._subscribes[event]) this._subscribes[event] = [];
-    this._subscribes[event].push(handler);
+    if (!this.subscribers[event]) this.subscribers[event] = [];
+    this.subscribers[event].push(handler);
 
     return this;
   }
@@ -37,14 +45,22 @@ export class Base {
    *
    * @param {string} event - Event name
    * @param {function} handler - Handler
-   * @returns {Base}
+   * @returns {Base} - Current instance
    */
 
   once(event, handler) {
-    if (!event) throw new TypeError('Failed to execute `once`: 2 arguments required.');
-    if (typeof event !== 'string') throw new TypeError('Failed to execute `once`: `event` must be a string.');
-    if (!handler) throw new TypeError('Failed to execute `once 2 arguments required, but only 1 present.');
-    if (typeof handler !== 'function') throw new TypeError('Failed to execute `once`: `handler` must be a function.');
+    if (!event) {
+      throw new TypeError('Failed to execute `once`: 2 arguments required.');
+    }
+    if (typeof event !== 'string') {
+      throw new TypeError('Failed to execute `once`: `event` must be a string.');
+    }
+    if (!handler) {
+      throw new TypeError('Failed to execute `once 2 arguments required, but only 1 present.');
+    }
+    if (typeof handler !== 'function') {
+      throw new TypeError('Failed to execute `once`: `handler` must be a function.');
+    }
 
     const wrapped = (...args) => {
       handler.call(this, args);
@@ -69,23 +85,23 @@ export class Base {
    *
    * @param {string} [event] - Event name
    * @param {function} [handler] - Handler
-   * @returns {Base}
+   * @returns {Base} - Current instance
    */
 
   off(event, handler) {
     if (handler === undefined) {
       if (event === undefined) {
-        this._subscribes = {};
+        this.subscribers = {};
       } else {
-        this._subscribes[event] = [];
+        this.subscribers[event] = [];
       }
 
       return this;
     }
 
-    for (let i = 0, l = this._subscribes[event].length; i < l; i++) {
-      if (this._subscribes[event][i] === handler) {
-        this._subscribes[event].splice(i, 1);
+    for (let i = 0, l = this.subscribers[event].length; i < l; i++) {
+      if (this.subscribers[event][i] === handler) {
+        this.subscribers[event].splice(i, 1);
         break;
       }
     }
@@ -97,23 +113,28 @@ export class Base {
    * Emit all subscribed handlers for event.
    *
    * @param {string} event - Event
-   * @returns {Base}
+   * @param args - Arguments that should passed to event handler
+   * @returns {Base} - Current instance
    */
 
   emit(event, ...args) {
-    if (!event) throw new TypeError('Failed to execute `emit`: 1 argument required.');
-    if (typeof event !== 'string') throw new TypeError('Failed to execute `emit`: `event` must be a string.');
+    if (!event) {
+      throw new TypeError('Failed to execute `emit`: 1 argument required.');
+    }
+    if (typeof event !== 'string') {
+      throw new TypeError('Failed to execute `emit`: `event` must be a string.');
+    }
 
     const attributeName = `on${event[0].toUpperCase()}${event.slice(1)}`;
 
-    if (this._subscribes[event] || this[attributeName]) {
+    if (this.subscribers[event] || this[attributeName]) {
       if (this[attributeName]) {
         this[attributeName].apply(this, args);
       }
 
-      if (this._subscribes[event]) {
-        for (let i = 0, l = this._subscribes[event].length; i < l; i++) {
-          this._subscribes[event][i].apply(this, args);
+      if (this.subscribers[event]) {
+        for (let i = 0, l = this.subscribers[event].length; i < l; i++) {
+          this.subscribers[event][i].apply(this, args);
         }
       }
     }
