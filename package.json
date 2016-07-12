@@ -53,6 +53,7 @@
     "gulp-sequence": "^0.4.5",
     "gulp-uglifyjs": "^0.6.2",
     "gulp-umd": "^0.2.0",
+    "gulp-version-injector": "^1.0.1",
     "jsdoc": "^3.4.0",
     "jsdoc-strip-async-await": "^0.1.0",
     "mocha": "^2.5.3",

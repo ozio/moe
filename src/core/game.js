@@ -1,4 +1,4 @@
-import { PIXI } from 'pixi.js';
+import 'pixi.js';
 import { Base } from './base';
 import { Stage } from './stage';
 
@@ -10,9 +10,9 @@ const defaults = {
   container: document.body,
   assets: 'http://localhost:54321/_assets/',
   openingSequence: [
-    sceneEngineLogo
+    sceneEngineLogo,
   ],
-  script: {}
+  script: {},
 };
 
 /**
@@ -62,7 +62,7 @@ export class Game extends Base {
      */
     this.emit('beforeStart');
 
-    this.initializeScreen();
+    this.initializeStage();
 
     /**
      * Start event.

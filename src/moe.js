@@ -1,6 +1,8 @@
-import * as moe from './core/index';
-import * as DEFAULT_SCENES from './scenes/index';
+import 'pixi.js';
+import * as core from './core/index';
+import * as scenes from './scenes/index';
 
-moe.DEFAULT_SCENES = DEFAULT_SCENES;
+core.VERSION = '%%VERSION%%';
+core.scenes = scenes;
 
-export { moe };
+export { core, scenes };

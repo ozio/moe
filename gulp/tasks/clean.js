@@ -3,7 +3,7 @@ const clean = require('gulp-clean');
 
 gulp.task('clean', () => {
   const stream = gulp.src('dist/**/*', { read: false })
-  .pipe(clean());
+    .pipe(clean());
 
   return stream;
 });
