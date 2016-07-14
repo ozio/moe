@@ -25,14 +25,14 @@ export const engineLogoScene = new Scene({
 
     await logo.fadeIn({
       easing: 'ease',
-      duration: 200,
+      duration: 1000,
     });
 
-    await stage.pressAnyKeyOrWait(3000);
+    await stage.pressAnyKeyOrWait(1000);
 
     await logo.fadeOut({
       easing: 'ease',
-      duration: 200,
+      duration: 1000,
     });
 
     stage.remove(logo, sample);
