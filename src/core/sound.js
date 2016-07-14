@@ -1,9 +1,9 @@
-import { Base } from './base';
+import { Asset } from './asset';
 
-export class Sound extends Base {
+export class Sound extends Asset {
   play() {}
 
   pause() {}
-  
+
   stop() {}
 }

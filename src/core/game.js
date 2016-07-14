@@ -2,16 +2,13 @@ import 'pixi.js';
 import { Base } from './base';
 import { Stage } from './stage';
 
-import { sceneEngineLogo } from '../scenes/engine-logo/engine-logo';
 
 const defaults = {
-  width: 1024,
-  height: 768,
+  width: document.body.clientWidth,
+  height: document.body.clientHeight,
   container: document.body,
-  assets: 'http://localhost:54321/_assets/',
-  openingSequence: [
-    sceneEngineLogo,
-  ],
+  openingSequence: [],
+  closingSequence: [],
   script: {},
 };
 
@@ -48,6 +45,18 @@ export class Game extends Base {
   }
 
   /**
+   * Start the opening sequence
+   */
+
+  startOpeningSequence() {
+    const sequence = this.params.openingSequence;
+
+    for (const scene of sequence) {
+      scene.render(this.stage);
+    }
+  }
+
+  /**
    * Initialize game.
    *
    * @fires Game#beforeStart
@@ -63,6 +72,7 @@ export class Game extends Base {
     this.emit('beforeStart');
 
     this.initializeStage();
+    this.startOpeningSequence();
 
     /**
      * Start event.

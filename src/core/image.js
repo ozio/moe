@@ -1,3 +1,3 @@
-import { Base } from './base';
+import { Asset } from './asset';
 
-export class Image extends Base {}
+export class Image extends Asset {}

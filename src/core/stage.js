@@ -23,6 +23,12 @@ export class Stage extends Base {
     this.renderer = renderer;
   }
 
+  add(...assets) {
+    for (const asset of assets) {
+      asset.setStage(this);
+    }
+  }
+
   pressAnyKeyOrWait(duration = 2000) {
     const fn = (resolve, reject) => {
       keyboard.once('anyKey', resolve);

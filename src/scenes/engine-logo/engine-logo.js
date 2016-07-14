@@ -1,14 +1,15 @@
+import 'babel-polyfill';
 import { Scene } from '../../core/scene';
 
-export const screenEngineLogo = new Scene({
+export const engineLogoScene = new Scene({
   assets: [
     { name: 'logo', kind: 'image', path: './assets/engine-logo.png' },
     { name: 'sample', kind: 'audio', path: './assets/engine-audio.wav' },
   ],
 
   async sequence(stage, route = {}) {
-    const logo = this.images.logo;
-    const sample = this.sounds.sample;
+    const logo = this.images.get('logo');
+    const sample = this.sounds.get('sample');
 
     logo.set({
       width: 240,

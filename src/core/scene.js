@@ -1,12 +1,14 @@
 import { Base } from './base';
 import { Sound } from './sound';
 import { Image } from './image';
+import { Manager } from './manager';
 
 const defaults = {
   assets: [],
-  width: 1024,
-  height: 768,
-  backgroundColor: '#000000'
+  width: document.body.clientWidth,
+  height: document.body.clientHeight,
+  backgroundColor: 'transparent',
+  position: [0, 0],
 };
 
 /**
@@ -32,8 +34,15 @@ export class Scene extends Base {
   constructor(params) {
     super();
 
+    this.images = new Manager();
+    this.sounds = new Manager();
+
     this.params = Object.assign(defaults, params);
-    this.assets = this.parseAssets(params.assets);
+
+    Scene.parseAssets(params.assets, {
+      images: this.images,
+      sounds: this.sounds,
+    });
   }
 
   /**
@@ -43,34 +52,33 @@ export class Scene extends Base {
   * @param {string} assets[].name - Asset name.
   * @param {string} assets[].kind - Asset type.
   * @param {string} assets[].path - Relative path to asset.
-  * @returns {Object} - List of parsed assets.
+  * @param {Object} managers - Managers to store assets.
   */
 
-  parseAssets(assets = []) {
-    const parsedAssets = {};
-
+  static parseAssets(assets = [], managers = {}) {
     for (const asset of assets) {
       if (asset.kind === 'audio') {
         const sound = new Sound(asset.name, { path: asset.path });
-        parsedAssets[asset.name] = sound;
+        const name = asset.name;
+
+        if (managers.sounds) managers.sounds.register(name, sound);
       } else
 
       if (asset.kind === 'image') {
         const image = new Image(asset.name, { path: asset.path });
-        parsedAssets[asset.name] = image;
+        const name = asset.name;
+
+        if (managers.images) managers.images.register(name, image);
       }
     }
-
-    return parsedAssets;
   }
 
   /**
   * Scene render function.
   */
 
-  render() {
+  render(stage) {
     const route = {};
-    this.sequence(this.stage, route);
+    this.params.sequence.apply(this, [stage, route]);
   }
-
 }

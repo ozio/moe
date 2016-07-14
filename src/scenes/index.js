@@ -1,3 +1,3 @@
-import { screenEngineLogo } from './engine-logo/engine-logo';
+import { engineLogoScene } from './engine-logo/engine-logo';
 
-export { screenEngineLogo };
+export { engineLogoScene };
