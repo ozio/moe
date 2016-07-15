@@ -1,10 +1,10 @@
 import { Base } from './base';
-import { keyboard } from './keyboard';
 
 export class Stage extends Base {
-  constructor(params) {
+  constructor(game, params) {
     super();
 
+    this.game = game;
     this.params = params;
   }
 
@@ -35,11 +35,19 @@ export class Stage extends Base {
     }
   }
 
+  pressAnyKey() {
+    const fn = (resolve, reject) => {
+      this.game.controls.once('anyKey', resolve);
+    };
+
+    return new Promise(fn);
+  }
+
   pressAnyKeyOrWait(duration = 2000) {
     const fn = (resolve, reject) => {
-      keyboard.once('anyKey', resolve);
+      this.game.controls.once('anyKey', resolve);
       const timeout = setTimeout(() => {
-        keyboard.off('anyKey', resolve);
+        this.game.controls.off('anyKey', resolve);
         resolve();
       }, duration);
     };

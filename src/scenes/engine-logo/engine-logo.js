@@ -1,7 +1,8 @@
-import 'babel-polyfill';
-import { Scene } from '../../core/scene';
+import { Scene } from '../../core/index';
 
 export const engineLogoScene = new Scene({
+  name: 'engineLogoScene',
+
   assets: [
     { name: 'logo', kind: 'image', path: './assets/engine-logo.png' },
     { name: 'sample', kind: 'audio', path: './assets/engine-audio.wav' },

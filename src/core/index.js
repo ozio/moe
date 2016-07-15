@@ -5,6 +5,6 @@ import { Scene } from './scene';
 import { Stage } from './stage';
 import { Image } from './image';
 import { Sound } from './sound';
-import { Keyboard } from './keyboard';
+import { Controls } from './controls';
 
-export { Game, Base, Manager, Scene, Stage, Image, Sound, Keyboard };
+export { Game, Base, Manager, Scene, Stage, Image, Sound, Controls };
