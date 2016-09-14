@@ -8,7 +8,7 @@ export const engineLogoScene = new Scene({
     { name: 'sample', kind: 'audio', path: './assets/engine-audio.wav' },
   ],
 
-  async sequence(stage, route = {}) {
+  async sequence(stage, resolve) {
     const logo = this.images.get('logo');
     const sample = this.sounds.get('sample');
 
@@ -26,18 +26,18 @@ export const engineLogoScene = new Scene({
 
     await logo.fadeIn({
       easing: 'ease',
-      duration: 1000,
+      duration: 2000,
     });
 
-    await stage.pressAnyKeyOrWait(1000);
+    await stage.pressAnyKeyOrWait(5000);
 
     await logo.fadeOut({
       easing: 'ease',
-      duration: 1000,
+      duration: 2000,
     });
 
     stage.remove(logo, sample);
 
-    return this;
+    resolve();
   },
 });

@@ -23,7 +23,7 @@ gulp.task('compile', () => {
   const notifyHandler = notify.onError((error) => {
     stream.emit('end');
 
-    const rootPath = path.join(__dirname, '../../gamme/').slice(0, -1);
+    const rootPath = path.join(__dirname, '../../game/').slice(0, -1);
     const errorString = error.message
       .split(':')
       .slice(1)

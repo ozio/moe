@@ -2,6 +2,7 @@ import { Base } from './base';
 import { Sound } from './sound';
 import { Image } from './image';
 import { Manager } from './manager';
+import { debug } from './debug';
 
 const defaults = {
   assets: [],
@@ -34,10 +35,12 @@ export class Scene extends Base {
   constructor(params) {
     super();
 
+    this.name = params.name;
+
     this.images = new Manager();
     this.sounds = new Manager();
 
-    this.params = Object.assign(defaults, params);
+    this.params = Object.assign({}, defaults, params);
 
     Scene.parseAssets(params.assets, {
       images: this.images,
@@ -78,7 +81,12 @@ export class Scene extends Base {
   */
 
   render(stage) {
-    const route = {};
-    this.params.sequence.apply(this, [stage, route]);
+    debug.stripe(this.name);
+
+    const fn = (resolve, reject) => {
+      this.params.sequence.apply(this, [stage, resolve]);
+    };
+
+    return new Promise(fn);
   }
 }

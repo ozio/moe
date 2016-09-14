@@ -5,6 +5,7 @@
     "no-undef": 0,
     "dot-notation": 1,
     "no-trailing-spaces": 0,
-    "no-unused-vars": 0
+    "no-unused-vars": 0,
+    "no-console": 0
   }
 }

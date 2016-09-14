@@ -1,3 +1,5 @@
+import { debug } from './debug';
+
 /**
  * The base class that bring functionality to all other classes, e.g. event emitting.
  */
@@ -34,6 +36,8 @@ export class Base {
       throw new TypeError('Failed to execute `on`: `handler` must be a function.');
     }
 
+    debug.label('on', event);
+
     if (!this.subscribers[event]) this.subscribers[event] = [];
     this.subscribers[event].push(handler);
 
@@ -62,6 +66,8 @@ export class Base {
       throw new TypeError('Failed to execute `once`: `handler` must be a function.');
     }
 
+    debug.label('once', event);
+
     const wrapped = (...args) => {
       handler.call(this, args);
 
@@ -89,6 +95,8 @@ export class Base {
    */
 
   off(event, handler) {
+    debug.label('off', event);
+
     if (handler === undefined) {
       if (event === undefined) {
         this.subscribers = {};
@@ -101,7 +109,7 @@ export class Base {
 
     for (let i = 0, l = this.subscribers[event].length; i < l; i++) {
       if (this.subscribers[event][i] === handler) {
-        this.subscribers[event].splice(i, 1);
+        this.subscribers[event][i] = null;
         break;
       }
     }
@@ -125,6 +133,8 @@ export class Base {
       throw new TypeError('Failed to execute `emit`: `event` must be a string.');
     }
 
+    debug.label('emit', event);
+
     const attributeName = `on${event[0].toUpperCase()}${event.slice(1)}`;
 
     if (this.subscribers[event] || this[attributeName]) {
@@ -134,7 +144,9 @@ export class Base {
 
       if (this.subscribers[event]) {
         for (let i = 0, l = this.subscribers[event].length; i < l; i++) {
-          this.subscribers[event][i].apply(this, args);
+          if (this.subscribers[event][i]) {
+            this.subscribers[event][i].apply(this, args);
+          }
         }
       }
     }

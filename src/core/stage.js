@@ -1,3 +1,4 @@
+import { debug } from './debug';
 import { Base } from './base';
 
 export class Stage extends Base {
@@ -36,19 +37,31 @@ export class Stage extends Base {
   }
 
   pressAnyKey() {
+    debug.yellow('start', 'pressAnyKey');
+
     const fn = (resolve, reject) => {
-      this.game.controls.once('anyKey', resolve);
+      debug.green('end', 'pressAnyKey');
+      this.game.controls.once('any', resolve);
     };
 
     return new Promise(fn);
   }
 
   pressAnyKeyOrWait(duration = 2000) {
+    debug.yellow('start', 'pressAnyKeyOrWait');
+    let timeout;
+
     const fn = (resolve, reject) => {
-      this.game.controls.once('anyKey', resolve);
-      const timeout = setTimeout(() => {
-        this.game.controls.off('anyKey', resolve);
+      const resolveHandler = () => {
+        debug.green('end', 'pressAnyKeyOrWait');
+        clearTimeout(timeout);
         resolve();
+      };
+
+      this.game.controls.once('any', resolveHandler);
+      timeout = setTimeout(() => {
+        this.game.controls.off('any', resolveHandler);
+        resolveHandler();
       }, duration);
     };
 

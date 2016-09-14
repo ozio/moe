@@ -1,7 +1,9 @@
 import 'pixi.js';
+import 'babel-polyfill';
+
 import { Base } from './base';
 import { Stage } from './stage';
-
+import { Controls } from './controls';
 
 const defaults = {
   width: document.body.clientWidth,
@@ -32,7 +34,7 @@ export class Game extends Base {
   constructor(params) {
     super();
 
-    this.params = Object.assign(defaults, params);
+    this.params = Object.assign({}, defaults, params);
   }
 
   /**
@@ -40,19 +42,28 @@ export class Game extends Base {
    */
 
   initializeStage() {
-    this.stage = new Stage(this.params);
+    this.stage = new Stage(this, this.params);
     this.stage.initialize();
+  }
+
+  /**
+   * Initialize controls.
+   */
+
+  initializeControls() {
+    this.controls = new Controls();
+    this.controls.initialize();
   }
 
   /**
    * Start the opening sequence
    */
 
-  startOpeningSequence() {
+  async startOpeningSequence() {
     const sequence = this.params.openingSequence;
 
     for (const scene of sequence) {
-      scene.render(this.stage);
+      await scene.render(this.stage);
     }
   }
 
@@ -71,6 +82,7 @@ export class Game extends Base {
      */
     this.emit('beforeStart');
 
+    this.initializeControls();
     this.initializeStage();
     this.startOpeningSequence();
 

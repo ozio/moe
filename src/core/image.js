@@ -1,12 +1,13 @@
+import { debug } from './debug';
 import { Asset } from './asset';
 
 export class Image extends Asset {
   fadeIn(params = { easing: 'ease', duration: 1000 }) {
-    console.log('fadein');
+    debug.yellow('start', 'fadein');
 
     const fn = (resolve, reject) => {
       setTimeout(() => {
-        console.log('fadein end');
+        debug.green('end', 'fadein');
         resolve();
       }, params.duration);
     };
@@ -15,11 +16,11 @@ export class Image extends Asset {
   }
 
   fadeOut(params = { easing: 'ease', duration: 1000 }) {
-    console.log('fadeout');
+    debug.yellow('start', 'fadeout');
 
     const fn = (resolve, reject) => {
       setTimeout(() => {
-        console.log('fadeout end');
+        debug.green('end', 'fadeout');
         resolve();
       }, params.duration);
     };
